@@ -16,7 +16,12 @@ mongoose
     .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
 
 // ExpressJS Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+app.use("/", require("./routes/index"));
+app.use("/api/url", require("./routes/url"));
 
 // Setting Port to listen to
 const PORT = process.env.PORT || 5000;
