@@ -1,14 +1,14 @@
 // Initializing packages
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require('path');
+const path = require("path");
 require("dotenv/config");
 
 // Creating app object
 const app = express();
 
 // Set view engine
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 
 // Connecting to MongoDB
 mongoose
@@ -18,7 +18,6 @@ mongoose
     })
     .then(() => console.log("Successfully connected to MongoDB"))
     .catch(err => console.log(`Error connecting to MongoDB: ${err}`));
-
 
 // ExpressJS Middleware
 app.use(express.json());

@@ -9,18 +9,31 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/styles.css" />
+        <link
+            rel="shortcut icon"
+            href="images/favicon.png"
+            type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+        />
         <title>URL Shortener</title>
     </head>
     <body>
         <div class="main">
             <div class="header">
-                <h2><i class="fas fa-link"></i> URL Shortener</h2>
+                <h2>
+                    <i class="fas fa-link animated rubberBand"></i> URL
+                    Shortener
+                </h2>
             </div>
             <div class="primary">
                 <input
                     class="urlInput"
                     type="text"
                     placeholder="Paste your link here..."
+                    required
                 />
                 <button class="submit urlButton">Submit</button>
                 <div class="results hidden">
@@ -29,8 +42,13 @@
                 <a href="#" class="clear hidden">Clear</a>
             </div>
             <div class="footer">
-                <p>
-                    Made with by <span style="color: #e25555;">&#9829;</span>
+                <p style="text-align: center; margin: 6px 0">
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Somsubhra Das | Made with
+                    <span style="color: #e25555;">&#9829;</span> by
                     <a style="color: #fff;" href="https://github.com/Somsubhra1"
                         >Somsubhra Das</a
                     >

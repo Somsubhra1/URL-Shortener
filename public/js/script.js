@@ -22,8 +22,6 @@ function getURL() {
             longUrl: site
         })
         .then(res => {
-            console.log(res);
-
             if (res.data.statusCode !== 200) {
                 urlInput.value = "";
                 urlInput.placeholder = res.data.msg;
