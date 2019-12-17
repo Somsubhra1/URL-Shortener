@@ -21,7 +21,7 @@ router.get("/:code", (req, res) => {
             if (url) {
                 return res.redirect(url.longUrl);
             } else {
-                res.status(404).json({ msg: "No URL found" });
+                res.status(404).redirect("/");
             }
         })
         .catch(err => {
