@@ -10,7 +10,7 @@ const router = express.Router();
 //@route    GET /
 //@desc     Show Index page
 router.get("/", (req, res) => {
-    res.send("Hello");
+    res.render("index.ejs");
 });
 
 //@route    GET /:code
