@@ -7,6 +7,12 @@ const Url = require("../models/Url");
 // Initializing router object
 const router = express.Router();
 
+//@route    GET /
+//@desc     Show Index page
+router.get("/", (req, res) => {
+    res.send("Hello");
+});
+
 //@route    GET /:code
 //@desc     Redirect to long URL
 router.get("/:code", (req, res) => {

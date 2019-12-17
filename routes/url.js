@@ -19,7 +19,9 @@ router.post("/shorten", (req, res) => {
 
     // Checking base URL validity
     if (!validUrl.isUri(baseUrl)) {
-        return res.status(500).json({ msg: "Invalid base URL" });
+        return res
+            .status(500)
+            .json({ msg: "Invalid base URL", statusCode: 500 });
     }
 
     // Generate URL code
@@ -31,7 +33,9 @@ router.post("/shorten", (req, res) => {
             .then(url => {
                 // If URL already present:
                 if (url) {
-                    return res.status(200).json({ msg: "Success", url });
+                    return res
+                        .status(200)
+                        .json({ msg: "Success", statusCode: 200, url });
                 } else {
                     // Creating new shortUrl
                     const shortUrl = baseUrl + "/" + urlCode;
@@ -46,21 +50,29 @@ router.post("/shorten", (req, res) => {
                     newUrl
                         .save()
                         .then(url =>
-                            res.status(200).json({ msg: "Success", url })
+                            res
+                                .status(200)
+                                .json({ msg: "Success", statusCode: 200, url })
                         )
                         .catch(err =>
-                            res
-                                .status(500)
-                                .json({ msg: "Internal Server Error", err })
+                            res.status(500).json({
+                                msg: "Internal Server Error",
+                                statusCode: 500,
+                                err
+                            })
                         );
                 }
             })
             .catch(err => {
                 console.log(err);
-                res.status(500).json({ msg: "Internal Server Error", err });
+                res.status(500).json({
+                    msg: "Internal Server Error",
+                    statusCode: 500,
+                    err
+                });
             });
     } else {
-        res.status(422).json({ msg: "Invalid URL" });
+        res.status(422).json({ msg: "Invalid URL", statusCode: 422 });
     }
 });
 
