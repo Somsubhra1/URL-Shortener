@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/Somsubhra1/URL-Shortener/issues"
   },
-  "homepage": "https://github.com/Somsubhra1/URL-Shortener#readme",
+  "homepage": "https://nameless-woodland-91214.herokuapp.com",
   "dependencies": {
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
