@@ -17,6 +17,7 @@ router.post("/shorten", (req, res) => {
 
     const baseUrl = process.env.baseURL;
 
+    // Checking if user is trying to shorted our URL
     if (longUrl.includes(baseUrl)) {
         return res
             .status(422)
