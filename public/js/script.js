@@ -1,3 +1,4 @@
+// Grabbing DOM Elements
 const urlInput = document.querySelector(".urlInput");
 const result = document.querySelector(".result");
 const results = document.querySelector(".results");
@@ -6,6 +7,7 @@ const submit = document.querySelector(".submit");
 const clear = document.querySelector(".clear");
 const initial = "Paste your link here...";
 
+// URL shorten base function
 function shorten() {
     if (!urlInput.value) {
         urlInput.placeholder = "You need to enter a link to shorten...";
@@ -15,6 +17,7 @@ function shorten() {
     }
 }
 
+// Function to make post request to backend
 function getURL() {
     const site = urlInput.value;
     axios
@@ -22,23 +25,26 @@ function getURL() {
             longUrl: site
         })
         .then(res => {
-            if (res.data.statusCode !== 200) {
+            urlInput.value = res.data.url.shortUrl;
+            results.classList.toggle("hidden");
+            submit.classList.toggle("hidden");
+            clear.classList.toggle("hidden");
+            urlInput.select();
+        })
+        .catch(err => {
+            if (err.response.status !== 200) {
                 urlInput.value = "";
-                urlInput.placeholder = res.data.msg;
+                urlInput.placeholder = err.response.data.msg;
                 setTimeout(() => {
                     urlInput.placeholder = initial;
-                }, 4000);
-            } else {
-                urlInput.value = res.data.url.shortUrl;
-                results.classList.toggle("hidden");
-                submit.classList.toggle("hidden");
-                clear.classList.toggle("hidden");
-                urlInput.select();
+                }, 5000);
             }
-        })
-        .catch(err => console.error("Error shortening url", err));
+
+            console.error("Error shortening url", err);
+        });
 }
 
+// Input Form reset function
 function reset() {
     urlInput.value = "";
     results.classList.toggle("hidden");
@@ -46,6 +52,7 @@ function reset() {
     clear.classList.toggle("hidden");
 }
 
+// Binding event listeners to elements
 submit.addEventListener("click", shorten);
 copy.addEventListener("click", () => document.execCommand("Copy"));
 clear.addEventListener("click", reset);

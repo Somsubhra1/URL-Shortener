@@ -17,11 +17,17 @@ router.post("/shorten", (req, res) => {
 
     const baseUrl = process.env.baseURL;
 
+    if (longUrl.includes(baseUrl)) {
+        return res
+            .status(422)
+            .json({ msg: "Don't try to shorten our URL", statusCode: 422 });
+    }
+
     // Checking base URL validity
     if (!validUrl.isUri(baseUrl)) {
         return res
             .status(500)
-            .json({ msg: "Invalid base URL", statusCode: 500 });
+            .json({ msg: "Internal Server Error", statusCode: 500 });
     }
 
     // Generate URL code
